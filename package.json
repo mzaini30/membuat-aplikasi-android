@@ -1,4 +1,5 @@
 {
+  "namaAplikasi": "Hello World",
   "scripts": {
     "build": "cd android && gradlew :app:assembleDebug :app:assembleDebugUnitTest :app:assembleDebugAndroidTest"
   }
