@@ -1,5 +1,7 @@
 {
-  "namaAplikasi": "Hello World",
+  "nama": "Aplikasi",
+  "versi": "1",
+  "id": "com.mzaini30.aplikasi",
   "scripts": {
     "build": "cd android && gradlew :app:assembleDebug :app:assembleDebugUnitTest :app:assembleDebugAndroidTest"
   }
