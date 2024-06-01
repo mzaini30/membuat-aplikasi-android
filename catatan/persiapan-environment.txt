@@ -1,7 +1,3 @@
-# Membuat Aplikasi Android
-
-## Persiapan Environment
-
 Install dulu Android Studio
 
 | Variable | Value |
