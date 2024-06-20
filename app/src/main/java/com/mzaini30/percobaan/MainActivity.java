@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 // return false;
-                if (url.startsWith("file:///android_asset/")) {
+                if (url.startsWith("file:///android_asset/") || url.startsWith("https://fonts.googleapis.com") || url.startsWith("https://fonts.gstatic.com")) {
                     return false;
                 } else {
                     Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
