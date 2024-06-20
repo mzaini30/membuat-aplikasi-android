@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         String databasePath = this.getApplicationContext().getDir("database", Context.MODE_PRIVATE).getPath();
         webSettings.setDatabasePath(databasePath);
         webSettings.setDomStorageEnabled(true);
+        webSettings.setAllowFileAccessFromFileURLs(true);
+        webSettings.setAllowUniversalAccessFromFileURLs(true);
 
 
         webView.setWebViewClient(new WebViewClient() {
