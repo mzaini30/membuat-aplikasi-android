@@ -77,6 +77,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @JavascriptInterface
+        public void playAudioLoop(String fileMp3) {
+            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, getResources().getIdentifier(fileMp3, "raw", getPackageName()));
+            if (mediaPlayer != null) {
+                mediaPlayer.setLooping(true);
+                mediaPlayer.start();
+                mediaPlayers.add(mediaPlayer);
+            }
+        }
+
+        @JavascriptInterface
         public void stopAllAudio() {
             for (MediaPlayer mediaPlayer : mediaPlayers) {
                 if (mediaPlayer.isPlaying()) {
