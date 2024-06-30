@@ -1,5 +1,5 @@
 package com.mzaini30.percobaan;
-
+import android.content.res.AssetFileDescriptor;
 import androidx.appcompat.app.AppCompatActivity;
 import android.media.MediaPlayer;
 import android.webkit.JavascriptInterface;
@@ -70,9 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
         @JavascriptInterface
         public void playAudioLoop(String fileMp3) {
-            MediaPlayer mediaPlayer = new MediaPlayer();
             try {
-                mediaPlayer.setDataSource("file:///android_asset/" + fileMp3);
+                AssetFileDescriptor afd = getAssets().openFd(fileMp3);
+                MediaPlayer mediaPlayer = new MediaPlayer();
+                mediaPlayer.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                 mediaPlayer.setLooping(true);
                 mediaPlayer.prepare();
                 mediaPlayer.start();
