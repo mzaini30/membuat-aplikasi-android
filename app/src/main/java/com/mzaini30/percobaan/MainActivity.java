@@ -6,6 +6,7 @@ import android.webkit.JavascriptInterface;
 import androidx.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.IOException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -68,21 +69,16 @@ public class MainActivity extends AppCompatActivity {
         private List<MediaPlayer> mediaPlayers = new ArrayList<>();
 
         @JavascriptInterface
-        public void playAudio(String fileMp3) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, getResources().getIdentifier(fileMp3, "raw", getPackageName()));
-            if (mediaPlayer != null) {
-                mediaPlayer.start();
-                mediaPlayers.add(mediaPlayer);
-            }
-        }
-
-        @JavascriptInterface
         public void playAudioLoop(String fileMp3) {
-            MediaPlayer mediaPlayer = MediaPlayer.create(MainActivity.this, getResources().getIdentifier(fileMp3, "raw", getPackageName()));
-            if (mediaPlayer != null) {
+            MediaPlayer mediaPlayer = new MediaPlayer();
+            try {
+                mediaPlayer.setDataSource("file:///android_asset/" + fileMp3);
                 mediaPlayer.setLooping(true);
+                mediaPlayer.prepare();
                 mediaPlayer.start();
                 mediaPlayers.add(mediaPlayer);
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 
@@ -97,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
             }
             mediaPlayers.clear();
         }
+
     }
 
     @Override
