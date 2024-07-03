@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
     webView = (WebView) findViewById(R.id.web);
     audioInterface = new AudioInterface();
-    webView.addJavascriptInterface(audioInterface, "AudioInterface");
+    webView.addJavascriptInterface(audioInterface, "audio");
     webView.addJavascriptInterface(new LocalStorageInterface(this), "localStorage");
 
     WebSettings webSettings = webView.getSettings();
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
     private List<MediaPlayer> mediaPlayers = new ArrayList<>();
 
     @JavascriptInterface
-    public void playAudioLoop(String fileMp3) {
+    public void play(String fileMp3) {
       try {
         AssetFileDescriptor afd = getAssets().openFd(fileMp3);
         MediaPlayer mediaPlayer = new MediaPlayer();
@@ -95,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @JavascriptInterface
-    public void stopAllAudio() {
+    public void stop() {
       for (MediaPlayer mediaPlayer : mediaPlayers) {
         if (mediaPlayer.isPlaying()) {
           mediaPlayer.stop();
